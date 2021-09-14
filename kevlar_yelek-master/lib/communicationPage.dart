@@ -108,12 +108,13 @@ class _ChatPage extends State<ChatPage> with PhoneValidatorMixin {
     }).toList();
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
           title: (isConnecting
               ? Text('Bağlantı Kuruluyor ' + widget.server.name + '...')
               : isConnected
                   ? Text('Bağlantı Kuruldu ' + widget.server.name)
-                  : Text('Chat log with ' + widget.server.name))),
+                  : Text('İletişim Halinde ' + widget.server.name))),
       body: SafeArea(
         child: Column(
           children: <Widget>[
@@ -123,34 +124,33 @@ class _ChatPage extends State<ChatPage> with PhoneValidatorMixin {
                   controller: listScrollController,
                   children: list),
             ),
-            Row(
-              children: <Widget>[
-                Flexible(
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 16.0),
-                    child: TextField(
-                      style: const TextStyle(fontSize: 18.0),
-                      controller: textEditingController,
-                      decoration: InputDecoration.collapsed(
-                        hintText: isConnecting
-                            ? 'Ballistic Vest with Smart Sensor'
-                            : isConnected
-                                ? 'AlarmDurumu'
-                                : '',
-                        hintStyle: const TextStyle(color: Colors.grey),
-                      ),
-                      enabled: isConnected,
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.all(8.0),
-                  child: IconButton(
-                    icon: const Icon(Icons.timer),
-                  ),
-                )
-              ],
-            )
+            Title(
+              color: Colors.black,
+              child: Text(
+                "Ballistic Vest with Smart Sensor",
+                style: new TextStyle(fontSize: 20.0),
+              ),
+            ),
+            Image.asset("assets/images/soldier2.jpg", fit: BoxFit.cover),
+            // Row(
+            //   children: <Widget>[
+            //     Flexible(
+            //       child: new Container(
+            //         padding: new EdgeInsets.only(right: 14.0),
+            //         child: new Text(
+            //           'Ballistic Vest with SmartSensor',
+            //           overflow: TextOverflow.ellipsis,
+            //         ),
+            //       ),
+            //     ),
+            //     Container(
+            //       margin: const EdgeInsets.all(8.0),
+            //       child: IconButton(
+            //         icon: const Icon(Icons.timer),
+            //       ),
+            //     )
+            //   ],
+            // )
           ],
         ),
       ),
